@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.education.movie.R
+import com.education.movie.application.MoviesApp
+import com.education.movie.data.api.MoviesApi
 import com.education.movie.presentation.viewmodel.MoviesViewModel
 
 
@@ -28,6 +30,6 @@ class MoviesFragment : Fragment() {
 
     private fun moviesViewModelInit() {
         moviesViewModel = ViewModelProvider(this)[MoviesViewModel::class.java]
-        moviesViewModel.getFightClubMovie()
+        moviesViewModel.getFightClubMovie((activity?.application as? MoviesApp)?.moviesApi)
     }
 }
