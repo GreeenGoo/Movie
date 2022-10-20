@@ -1,7 +1,7 @@
 package com.education.movie.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.education.movie.R
 import com.education.movie.presentation.fragments.MoviesFragment
 
