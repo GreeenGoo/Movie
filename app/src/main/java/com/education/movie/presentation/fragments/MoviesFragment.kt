@@ -8,9 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.education.movie.databinding.FragmentMoviesBinding
-import com.education.movie.presentation.MainActivity.Companion.mLayoutManagerState
 import com.education.movie.presentation.viewmodel.MoviesViewModel
-import dagger.hilt.EntryPoint
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_movies.recycler_view
 
@@ -33,6 +31,17 @@ class MoviesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModelInit()
         recyclerViewInit()
+        if (savedInstanceState != null) {
+            recycler_view.layoutManager?.onRestoreInstanceState(savedInstanceState)
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable(
+            "StoreRecyclerView",
+            recycler_view.layoutManager?.onSaveInstanceState()
+        )
     }
 
     private fun recyclerViewInit() {
@@ -41,9 +50,7 @@ class MoviesFragment : Fragment() {
     }
 
     private fun viewModelInit() {
-//        viewModel = ViewModelProvider(this)[MoviesViewModel::class.java]
-        viewModel.getPageOfMovies()
-        viewModel.myResponse.observe(viewLifecycleOwner) { response ->
+        viewModel.listOfMovies.observe(viewLifecycleOwner) { response ->
             if (response.isSuccessful) {
                 response.body()?.let { movies ->
                     adapter.setData(movies)
@@ -51,9 +58,6 @@ class MoviesFragment : Fragment() {
             } else {
                 Toast.makeText(requireContext(), response.code(), Toast.LENGTH_SHORT).show()
             }
-        }
-        if (mLayoutManagerState != null) {
-            recycler_view.layoutManager?.onRestoreInstanceState(mLayoutManagerState)
         }
     }
 }

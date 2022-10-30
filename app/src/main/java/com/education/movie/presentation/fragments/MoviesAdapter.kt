@@ -1,6 +1,5 @@
 package com.education.movie.presentation.fragments
 
-import android.annotation.SuppressLint
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
@@ -40,7 +39,6 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
         holder.itemView.release_date.text = moviesList.results[position].releaseDate
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     fun setData(movies: MovieResponse) {
         moviesList = movies
         notifyDataSetChanged()

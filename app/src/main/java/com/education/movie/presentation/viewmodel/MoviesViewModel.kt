@@ -14,11 +14,11 @@ import retrofit2.Response
 class MoviesViewModel @Inject constructor(
     private val repository: MoviesRepository
 ) : ViewModel() {
-    val myResponse = MutableLiveData<Response<MovieResponse>>()
+    val listOfMovies = MutableLiveData<Response<MovieResponse>>()
 
-    fun getPageOfMovies() {
+    init {
         viewModelScope.launch {
-            myResponse.value = repository.getPageOfMovies()
+            listOfMovies.value = repository.getPageOfMovies()
         }
     }
 }
