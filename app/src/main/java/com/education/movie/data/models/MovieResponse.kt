@@ -1,11 +1,11 @@
-package com.education.movie.data.entity
+package com.education.movie.data.models
 
 import com.google.gson.annotations.SerializedName
 
-data class PageOfMoviesEntity(
+data class MovieResponse(
     val page: Int,
 
-    val results: List<MovieListResultEntity>,
+    val results: List<ListOfMoviesResponse>,
 
     @SerializedName("total_pages")
     val totalPages: Int,

@@ -1,8 +1,8 @@
-package com.education.movie.data.entity
+package com.education.movie.data.models
 
 import com.google.gson.annotations.SerializedName
 
-data class MovieListResultEntity(
+data class ListOfMoviesResponse(
     @SerializedName("adult")
     val isAdult: Boolean,
 

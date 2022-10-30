@@ -3,19 +3,22 @@ package com.education.movie.presentation.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.education.movie.data.entity.PageOfMoviesEntity
+import com.education.movie.data.models.MovieResponse
 import com.education.movie.data.repository.MoviesRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
-class MoviesViewModel(private val repository: MoviesRepository) : ViewModel() {
+@HiltViewModel
+class MoviesViewModel @Inject constructor(
+    private val repository: MoviesRepository
+) : ViewModel() {
+    val myResponse = MutableLiveData<Response<MovieResponse>>()
 
-    val myResponse: MutableLiveData<Response<PageOfMoviesEntity>> = MutableLiveData()
-
-    fun getPageOfMovies(){
+    fun getPageOfMovies() {
         viewModelScope.launch {
-            val response = repository.getPageOfMovies()
-            myResponse.value = response
+            myResponse.value = repository.getPageOfMovies()
         }
     }
 }

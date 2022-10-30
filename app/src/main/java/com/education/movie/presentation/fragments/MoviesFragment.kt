@@ -6,52 +6,54 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.education.movie.R
-import com.education.movie.data.repository.MoviesRepository
+import androidx.fragment.app.viewModels
 import com.education.movie.databinding.FragmentMoviesBinding
+import com.education.movie.presentation.MainActivity.Companion.mLayoutManagerState
 import com.education.movie.presentation.viewmodel.MoviesViewModel
-import com.education.movie.presentation.viewmodel.MoviesViewModelFactory
+import dagger.hilt.EntryPoint
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_movies.recycler_view
 
-
+@AndroidEntryPoint
 class MoviesFragment : Fragment() {
 
-    private var viewModel: MoviesViewModel? = null
-    private var _binding: FragmentMoviesBinding? = null
-    private val binding get() = _binding!!
-    private val adapter by lazy { MoviesAdapter() }
+    private val viewModel: MoviesViewModel by viewModels()
+    private var adapter = MoviesAdapter()
+    private lateinit var binding: FragmentMoviesBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentMoviesBinding.inflate(inflater, container, false)
-        return inflater.inflate(R.layout.fragment_movies, container, false)
+    ): View {
+        binding = FragmentMoviesBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupRecyclerView()
-        setupViewModel()
+        viewModelInit()
+        recyclerViewInit()
     }
 
-    private fun setupRecyclerView() {
-        recycler_view.adapter = adapter
+    private fun recyclerViewInit() {
+        val recyclerView = binding.recyclerView
+        recyclerView.adapter = adapter
     }
 
-    private fun setupViewModel() {
-        val repository = MoviesRepository()
-        val viewModelFactory = MoviesViewModelFactory(repository)
-        viewModel = ViewModelProvider(this, viewModelFactory)[MoviesViewModel::class.java]
-        viewModel!!.getPageOfMovies()
-        viewModel!!.myResponse.observe(viewLifecycleOwner) { response ->
+    private fun viewModelInit() {
+//        viewModel = ViewModelProvider(this)[MoviesViewModel::class.java]
+        viewModel.getPageOfMovies()
+        viewModel.myResponse.observe(viewLifecycleOwner) { response ->
             if (response.isSuccessful) {
-                response.body()?.let { adapter.setData(it) }
+                response.body()?.let { movies ->
+                    adapter.setData(movies)
+                }
             } else {
                 Toast.makeText(requireContext(), response.code(), Toast.LENGTH_SHORT).show()
             }
-
+        }
+        if (mLayoutManagerState != null) {
+            recycler_view.layoutManager?.onRestoreInstanceState(mLayoutManagerState)
         }
     }
 }

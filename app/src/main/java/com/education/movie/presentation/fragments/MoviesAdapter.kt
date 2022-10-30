@@ -8,15 +8,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.education.movie.R
-import com.education.movie.data.entity.PageOfMoviesEntity
-import com.education.movie.data.utils.Utils.Companion.BASE_URI_FOR_IMAGES
+import com.education.movie.data.models.MovieResponse
+import kotlinx.android.synthetic.main.movies_recyclerview_item.view.overview
 import kotlinx.android.synthetic.main.movies_recyclerview_item.view.poster_imageview
-import kotlinx.android.synthetic.main.movies_recyclerview_item.view.title_and_vote
+import kotlinx.android.synthetic.main.movies_recyclerview_item.view.release_date
+import kotlinx.android.synthetic.main.movies_recyclerview_item.view.title
 
 
-class MoviesAdapter :
-    RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
-    private var moviesList = PageOfMoviesEntity(0, emptyList(), 0, 0)
+class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
+    private var moviesList = MovieResponse(0, emptyList(), 0, 0)
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -30,20 +30,23 @@ class MoviesAdapter :
 
     override fun getItemCount(): Int = moviesList.results.size
 
-
-    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         Glide.with(holder.itemView.context)
             .load(Uri.parse("$BASE_URI_FOR_IMAGES${moviesList.results[position].posterPath}"))
             .centerCrop()
             .into(holder.itemView.poster_imageview)
-        holder.itemView.title_and_vote.text =
-            "${moviesList.results[position].title} (${moviesList.results[position].voteAverage})"
+        holder.itemView.title.text = moviesList.results[position].title
+        holder.itemView.overview.text = moviesList.results[position].overview
+        holder.itemView.release_date.text = moviesList.results[position].releaseDate
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(movies: PageOfMoviesEntity) {
+    fun setData(movies: MovieResponse) {
         moviesList = movies
         notifyDataSetChanged()
+    }
+
+    companion object{
+        const val BASE_URI_FOR_IMAGES = "https://www.themoviedb.org/t/p/w220_and_h330_face/"
     }
 }
