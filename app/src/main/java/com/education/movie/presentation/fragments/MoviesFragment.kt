@@ -1,16 +1,16 @@
 package com.education.movie.presentation.fragments
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.education.movie.databinding.FragmentMoviesBinding
 import com.education.movie.presentation.viewmodel.MoviesViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_movies.recycler_view
+import kotlin.system.exitProcess
 
 @AndroidEntryPoint
 class MoviesFragment : Fragment() {
@@ -31,17 +31,6 @@ class MoviesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModelInit()
         recyclerViewInit()
-        if (savedInstanceState != null) {
-            recycler_view.layoutManager?.onRestoreInstanceState(savedInstanceState)
-        }
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putParcelable(
-            "StoreRecyclerView",
-            recycler_view.layoutManager?.onSaveInstanceState()
-        )
     }
 
     private fun recyclerViewInit() {
@@ -51,12 +40,18 @@ class MoviesFragment : Fragment() {
 
     private fun viewModelInit() {
         viewModel.listOfMovies.observe(viewLifecycleOwner) { response ->
-            if (response.isSuccessful) {
+            try {
                 response.body()?.let { movies ->
                     adapter.setData(movies)
                 }
-            } else {
-                Toast.makeText(requireContext(), response.code(), Toast.LENGTH_SHORT).show()
+            } catch (e: Exception) {
+                val builder = AlertDialog.Builder(requireContext())
+                builder.setPositiveButton("Exit") { _, _ ->
+                    exitProcess(0)
+                }
+                builder.setTitle("Error")
+                builder.setMessage("Connection with server is lost...")
+                builder.create().show()
             }
         }
     }

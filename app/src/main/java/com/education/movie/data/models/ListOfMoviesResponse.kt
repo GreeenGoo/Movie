@@ -12,6 +12,7 @@ data class ListOfMoviesResponse(
     @SerializedName("genre_ids")
     val genreIds: List<Int>,
 
+    @SerializedName("id")
     val id: Int,
 
     @SerializedName("original_language")
@@ -20,8 +21,10 @@ data class ListOfMoviesResponse(
     @SerializedName("original_title")
     val originalTitle: String,
 
+    @SerializedName("overview")
     val overview: String,
 
+    @SerializedName("popularity")
     val popularity: Float,
 
     @SerializedName("poster_path")
@@ -30,8 +33,10 @@ data class ListOfMoviesResponse(
     @SerializedName("release_date")
     val releaseDate: String,
 
+    @SerializedName("title")
     val title: String,
 
+    @SerializedName("video")
     val video: Boolean,
 
     @SerializedName("vote_average")

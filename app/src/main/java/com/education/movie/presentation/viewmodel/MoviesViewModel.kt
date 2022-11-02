@@ -12,13 +12,15 @@ import retrofit2.Response
 
 @HiltViewModel
 class MoviesViewModel @Inject constructor(
-    private val repository: MoviesRepository
+    private val repository: MoviesRepository,
 ) : ViewModel() {
     val listOfMovies = MutableLiveData<Response<MovieResponse>>()
-
     init {
         viewModelScope.launch {
-            listOfMovies.value = repository.getPageOfMovies()
+            try {
+                listOfMovies.value = repository.getPageOfMovies()
+            } catch (e: NullPointerException) {
+            }
         }
     }
 }

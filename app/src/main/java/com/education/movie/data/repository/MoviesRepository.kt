@@ -5,7 +5,11 @@ import com.education.movie.data.network.RetrofitClient
 import retrofit2.Response
 
 class MoviesRepository(private val retrofitClient : RetrofitClient) {
-    suspend fun getPageOfMovies(): Response<MovieResponse> {
-        return retrofitClient.api.getFirstPageOfPopularMovies()
+    suspend fun getPageOfMovies(): Response<MovieResponse>? {
+        return try {
+            retrofitClient.api.getFirstPageOfPopularMovies()
+        } catch (e: Exception) {
+            null
+        }
     }
 }
