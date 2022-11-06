@@ -1,6 +1,6 @@
 package com.education.movie.data.repository
 
-import com.education.movie.data.models.MovieResponse
+import com.education.movie.data.models.mainscreen.MovieResponse
 import com.education.movie.data.network.RetrofitClient
 import retrofit2.Response
 

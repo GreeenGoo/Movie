@@ -1,4 +1,4 @@
-package com.education.movie.presentation.fragments
+package com.education.movie.presentation.fragments.mainscreen
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -7,23 +7,28 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.education.movie.databinding.FragmentMoviesBinding
-import com.education.movie.presentation.viewmodel.MoviesViewModel
+import androidx.navigation.fragment.findNavController
+import com.education.movie.R
+import com.education.movie.data.models.mainscreen.ListOfMoviesResponse
+import com.education.movie.data.models.mainscreen.MovieResponse
+import com.education.movie.databinding.FragmentMainScreenBinding
+import com.education.movie.presentation.viewmodel.mainscreen.MainScreenViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.system.exitProcess
 
 @AndroidEntryPoint
-class MoviesFragment : Fragment() {
+class MainScreenFragment : Fragment() {
 
-    private val viewModel: MoviesViewModel by viewModels()
-    private var adapter = MoviesAdapter()
-    private lateinit var binding: FragmentMoviesBinding
+    private val viewModel: MainScreenViewModel by viewModels()
+    private var adapter = MainScreenAdapter(::onItemClick)
+    private lateinit var binding: FragmentMainScreenBinding
+    private var moviesList = MovieResponse(0, emptyList(), 0, 0)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentMoviesBinding.inflate(inflater, container, false)
+        binding = FragmentMainScreenBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -43,6 +48,7 @@ class MoviesFragment : Fragment() {
             try {
                 response.body()?.let { movies ->
                     adapter.setData(movies)
+                    moviesList = movies
                 }
             } catch (e: Exception) {
                 val builder = AlertDialog.Builder(requireContext())
@@ -54,5 +60,15 @@ class MoviesFragment : Fragment() {
                 builder.create().show()
             }
         }
+    }
+
+    private fun onItemClick (position: Int){
+        val selectedItem = Bundle()
+        val list = moviesList.results[position].id
+        selectedItem.putInt(MainScreenViewModel.BUNDLE_KEY, list)
+        findNavController().navigate(
+            R.id.action_moviesFragment_to_movieFragment,
+            selectedItem
+        )
     }
 }

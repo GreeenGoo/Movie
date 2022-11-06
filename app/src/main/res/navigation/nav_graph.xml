@@ -7,7 +7,15 @@
 
     <fragment
         android:id="@+id/moviesFragment"
-        android:name="com.education.movie.presentation.fragments.MoviesFragment"
-        android:label="fragment_movies"
-        tools:layout="@layout/fragment_movies" />
+        android:name="com.education.movie.presentation.fragments.mainscreen.MainScreenFragment"
+        android:label="Popular movies"
+        tools:layout="@layout/fragment_main_screen" >
+        <action
+            android:id="@+id/action_moviesFragment_to_movieFragment"
+            app:destination="@id/movieFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieFragment"
+        android:name="com.education.movie.presentation.fragments.movie.MovieFragment"
+        tools:layout="@layout/fragment_movie" />
 </navigation>

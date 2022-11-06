@@ -1,6 +1,6 @@
 package com.education.movie.data.network
 
-import com.education.movie.data.models.MovieResponse
+import com.education.movie.data.models.mainscreen.MovieResponse
 import retrofit2.Response
 import retrofit2.http.GET
 
