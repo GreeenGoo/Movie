@@ -36,7 +36,7 @@
         android:layout_marginStart="@dimen/big_margin"
         android:layout_marginTop="@dimen/middle_margin"
         android:text="@string/overview_text"
-        android:textSize="@dimen/middle_textSize"
+        android:textSize="@dimen/small_textSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/poster_imageview"
         app:layout_constraintTop_toBottomOf="@id/title"
@@ -49,7 +49,7 @@
         android:layout_marginEnd="@dimen/big_margin"
         android:layout_marginTop="@dimen/middle_margin"
         android:text="@string/release_date_text"
-        android:textSize="@dimen/middle_textSize"
+        android:textSize="@dimen/small_textSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/poster_imageview"/>
 

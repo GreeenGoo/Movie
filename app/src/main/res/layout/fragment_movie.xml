@@ -1,15 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.fragments.movie.MovieFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/text_view"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/margin_start"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/middle_margin" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/margin_end"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/middle_margin" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/title_section_bottom_barrier"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="poster, spoken_language"/>
+
+        <ImageView
+            android:id="@+id/background_poster"
+            android:layout_width="0dp"
+            android:layout_height="230dp"
+            app:layout_constraintEnd_toEndOf="@+id/margin_end"
+            app:layout_constraintStart_toStartOf="@+id/margin_start"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/poster"
+            android:layout_width="150dp"
+            android:layout_height="230dp"
+            android:layout_marginTop="@dimen/middle_margin"
+            app:layout_constraintStart_toStartOf="@id/margin_start"
+            app:layout_constraintTop_toBottomOf="@+id/background_poster" />
+
+        <TextView
+            android:id="@+id/title_and_release_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/middle_margin"
+            android:layout_marginTop="@dimen/middle_margin"
+            android:inputType="textMultiLine"
+            android:text="@string/title_release_year_example"
+            android:textSize="@dimen/middle_textSize"
+            app:layout_constraintEnd_toStartOf="@id/margin_end"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/poster"
+            app:layout_constraintTop_toBottomOf="@id/background_poster" />
+
+        <TextView
+            android:id="@+id/tagline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/middle_margin"
+            android:inputType="textMultiLine"
+            android:text="@string/tagline_example"
+            app:layout_constraintEnd_toStartOf="@id/margin_end"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/title_and_release_date"
+            app:layout_constraintTop_toBottomOf="@id/title_and_release_date" />
+
+        <TextView
+            android:id="@+id/release_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/middle_margin"
+            android:text="@string/release_date_example"
+            app:layout_constraintEnd_toStartOf="@id/margin_end"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/title_and_release_date"
+            app:layout_constraintTop_toBottomOf="@id/tagline" />
+
+        <TextView
+            android:id="@+id/genres"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/middle_margin"
+            android:inputType="textMultiLine"
+            android:text="@string/genres_example"
+            app:layout_constraintEnd_toStartOf="@id/margin_end"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/title_and_release_date"
+            app:layout_constraintTop_toBottomOf="@id/release_date" />
+
+        <TextView
+            android:id="@+id/runtime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/middle_margin"
+            android:text="@string/runtime_example"
+            app:layout_constraintEnd_toStartOf="@id/margin_end"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/title_and_release_date"
+            app:layout_constraintTop_toBottomOf="@id/genres" />
+
+        <TextView
+            android:id="@+id/vote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/middle_margin"
+            android:text="@string/vote_example"
+            app:layout_constraintEnd_toStartOf="@id/margin_end"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/title_and_release_date"
+            app:layout_constraintTop_toBottomOf="@id/runtime" />
+
+        <TextView
+            android:id="@+id/homepage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/middle_margin"
+            android:text="@string/homepage_example"
+            app:layout_constraintEnd_toStartOf="@id/margin_end"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/title_and_release_date"
+            app:layout_constraintTop_toBottomOf="@id/vote" />
+
+        <TextView
+            android:id="@+id/production_countries"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/middle_margin"
+            android:text="@string/production_countries_example"
+            app:layout_constraintEnd_toStartOf="@id/margin_end"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/title_and_release_date"
+            app:layout_constraintTop_toBottomOf="@id/homepage" />
+
+        <TextView
+            android:id="@+id/spoken_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/middle_margin"
+            android:inputType="textMultiLine"
+            android:text="@string/spoken_language_example"
+            app:layout_constraintEnd_toStartOf="@id/margin_end"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/title_and_release_date"
+            app:layout_constraintTop_toBottomOf="@id/production_countries" />
+
+        <TextView
+            android:id="@+id/overview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/overview_example"
+            app:layout_constraintStart_toEndOf="@id/margin_start"
+            app:layout_constraintEnd_toStartOf="@id/margin_end"
+            android:layout_marginTop="@dimen/middle_margin"
+            app:layout_constraintTop_toBottomOf="@id/title_section_bottom_barrier"/>
+
+        <TextView
+            android:id="@+id/companies"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/companies_example"
+            android:layout_marginTop="@dimen/middle_margin"
+            app:layout_constraintStart_toStartOf="@id/margin_start"
+            app:layout_constraintTop_toBottomOf="@id/overview"
+            app:layout_constraintEnd_toStartOf="@id/margin_end"/>
+
+        <TextView
+            android:id="@+id/budget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/budget_example"
+            app:layout_constraintTop_toBottomOf="@id/companies"
+            app:layout_constraintStart_toEndOf="@id/margin_start"
+            android:layout_marginTop="@dimen/middle_margin"/>
+
+        <TextView
+            android:id="@+id/revenue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/budget_example"
+            app:layout_constraintTop_toBottomOf="@id/budget"
+            app:layout_constraintStart_toEndOf="@id/margin_start"
+            android:layout_marginTop="@dimen/middle_margin"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

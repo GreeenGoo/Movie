@@ -4,6 +4,7 @@
     <dimen name="big_margin">10dp</dimen>
     <dimen name="imageView_height">180dp</dimen>
     <dimen name="big_textSize">20sp</dimen>
-    <dimen name="middle_textSize">12sp</dimen>
+    <dimen name="middle_textSize">16sp</dimen>
+    <dimen name="small_textSize">12sp</dimen>
     <dimen name="imageView_width">120dp</dimen>
 </resources>
