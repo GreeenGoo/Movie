@@ -9,8 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.education.movie.R
-import com.education.movie.data.models.mainscreen.ListOfMoviesResponse
-import com.education.movie.data.models.mainscreen.MovieResponse
+import com.education.movie.data.models.mainscreen.PageOfMoviesResponse
 import com.education.movie.databinding.FragmentMainScreenBinding
 import com.education.movie.presentation.viewmodel.mainscreen.MainScreenViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,7 +21,7 @@ class MainScreenFragment : Fragment() {
     private val viewModel: MainScreenViewModel by viewModels()
     private var adapter = MainScreenAdapter(::onItemClick)
     private lateinit var binding: FragmentMainScreenBinding
-    private var moviesList = MovieResponse(0, emptyList(), 0, 0)
+    private var moviesList = PageOfMoviesResponse(0, emptyList(), 0, 0)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

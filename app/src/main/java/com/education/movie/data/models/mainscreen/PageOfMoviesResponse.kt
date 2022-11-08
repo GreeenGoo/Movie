@@ -2,7 +2,7 @@ package com.education.movie.data.models.mainscreen
 
 import com.google.gson.annotations.SerializedName
 
-data class MovieResponse(
+data class PageOfMoviesResponse(
     @SerializedName("page")
     val page: Int,
 

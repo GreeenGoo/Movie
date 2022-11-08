@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.education.movie.R
-import com.education.movie.data.models.mainscreen.MovieResponse
+import com.education.movie.data.models.mainscreen.PageOfMoviesResponse
 import kotlinx.android.synthetic.main.main_screen_recyclerview_item.view.main_screen_recyclerview_item
 import kotlinx.android.synthetic.main.main_screen_recyclerview_item.view.overview
 import kotlinx.android.synthetic.main.main_screen_recyclerview_item.view.poster_imageview
@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.main_screen_recyclerview_item.view.title
 typealias OnItemClickListener = (position: Int) -> Unit
 
 class MainScreenAdapter (private val onItemClickListener: OnItemClickListener) : RecyclerView.Adapter<MainScreenAdapter.ViewHolder>() {
-    private var moviesList = MovieResponse(0, emptyList(), 0, 0)
+    private var moviesList = PageOfMoviesResponse(0, emptyList(), 0, 0)
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -44,7 +44,7 @@ class MainScreenAdapter (private val onItemClickListener: OnItemClickListener) :
         }
     }
 
-    fun setData(movies: MovieResponse) {
+    fun setData(movies: PageOfMoviesResponse) {
         moviesList = movies
         notifyDataSetChanged()
     }
