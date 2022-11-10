@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_main_screen" >
         <action
             android:id="@+id/action_moviesFragment_to_movieFragment"
-            app:destination="@id/movieFragment" />
+            app:destination="@id/movieFragment"
+            app:enterAnim="@anim/fast_fade_in"
+            app:exitAnim="@anim/fast_fade_out" />
     </fragment>
     <fragment
         android:id="@+id/movieFragment"

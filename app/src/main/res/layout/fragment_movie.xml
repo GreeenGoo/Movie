@@ -127,8 +127,8 @@
                 android:text="@string/homepage_example"
                 app:layout_constraintEnd_toStartOf="@id/margin_end"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@id/title_and_release_date"
-                app:layout_constraintTop_toBottomOf="@id/vote" />
+                app:layout_constraintStart_toStartOf="@id/margin_start"
+                app:layout_constraintTop_toBottomOf="@id/revenue" />
 
             <TextView
                 android:id="@+id/production_countries"
@@ -138,7 +138,7 @@
                 android:text="@string/production_countries_example"
                 app:layout_constraintEnd_toStartOf="@id/margin_end"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@id/title_and_release_date"
+                app:layout_constraintStart_toEndOf="@id/margin_start"
                 app:layout_constraintTop_toBottomOf="@id/homepage" />
 
             <TextView
@@ -151,7 +151,7 @@
                 app:layout_constraintEnd_toStartOf="@id/margin_end"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/title_and_release_date"
-                app:layout_constraintTop_toBottomOf="@id/production_countries" />
+                app:layout_constraintTop_toBottomOf="@id/vote" />
 
             <TextView
                 android:id="@+id/overview"

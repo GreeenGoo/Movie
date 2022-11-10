@@ -2,7 +2,6 @@ package com.education.movie.presentation.fragments.movie
 
 import android.annotation.SuppressLint
 import android.net.Uri
-import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -60,22 +59,43 @@ class MovieFragment : Fragment() {
                     title_and_release_date.text =
                         "${response.body()?.title} (${getYearFromDate(response.body()?.releaseDate.toString())})"
                     uploadPicture(poster, response.body()!!.posterPath)
-                    tagline.text = response.body()!!.tagline
-                    release_date.text = convertDataToRightFormat(response.body()!!.releaseDate)
-                    movie_genres.text = createGenresLine(response.body()!!.genres)
+                    tagline.text =
+                        response.body()!!.tagline
+                    release_date.text =
+                        getString(R.string.release_date_title) + convertDataToRightFormat(response.body()!!.releaseDate)
+                    movie_genres.text =
+                        getString(R.string.genres_title) + createGenresLine(response.body()!!.genres)
                     runtime.text =
-                        "${response.body()!!.runtime / 60} h ${response.body()!!.runtime % 60} min"
-                    vote.text = "${response.body()!!.voteAverage} (${response.body()!!.voteCount})"
-                    homepage.text = response.body()!!.homepage
+                        getString(R.string.runtime_title) + "${response.body()!!.runtime / 60} h ${response.body()!!.runtime % 60} min"
+                    vote.text =
+                        getString(R.string.vote_title) + "${response.body()!!.voteAverage} (${response.body()!!.voteCount} voices)"
+                    homepage.text =
+                        getString(R.string.home_page_title) + response.body()!!.homepage
                     production_countries.text =
-                        createCountriesLine(response.body()!!.productionCountries)
-                    spoken_language.text = createLanguagesLine(response.body()!!.spokenLanguages)
-                    overview.text = response.body()!!.overview
-                    companies.text = createCompaniesLine(response.body()!!.productionCompanies)
+                        getString(R.string.production_countries_title) + createCountriesLine(
+                            response.body()!!.productionCountries
+                        )
+                    spoken_language.text =
+                        getString(R.string.spoken_languages_title) + createLanguagesLine(response.body()!!.spokenLanguages)
+                    overview.text =
+                        response.body()!!.overview
+                    companies.text =
+                        getString(R.string.production_companies_title) + createCompaniesLine(
+                            response.body()!!.productionCompanies
+                        )
                     if (response.body()!!.budget == 0)
                         budget.visibility = View.GONE
-                    budget.text = "${response.body()!!.budget}$"
-                    revenue.text = "${response.body()!!.revenue}$"
+                    else {
+                        budget.text =
+                            getString(R.string.budget_title) + "${response.body()!!.budget}$"
+                    }
+                    if (response.body()!!.revenue == 0)
+                        revenue.visibility = View.GONE
+                    else {
+                        revenue.text =
+                            getString(R.string.revenue_title) + "${response.body()!!.revenue}$"
+                    }
+
                 } catch (e: Exception) {
                     Log.e("Movie Mistake", "There is a mistake with downloading the movie.")
                 }
@@ -135,8 +155,4 @@ class MovieFragment : Fragment() {
         }
         return line
     }
-
-//    private fun viewVisibility (view : View, visibility : Int){
-//        if ()
-//    }
 }
