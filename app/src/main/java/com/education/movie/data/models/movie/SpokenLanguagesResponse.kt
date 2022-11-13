@@ -7,7 +7,7 @@ data class SpokenLanguagesResponse(
     val englishName: String,
 
     @SerializedName("iso_639_1")
-    val iso_639_1: String,
+    val initials: String,
 
     @SerializedName("name")
     val name: String

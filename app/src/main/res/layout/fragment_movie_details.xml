@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.fragments.movie.MovieFragment">
+    tools:context=".presentation.fragments.movie.MovieDetailsFragment">
 
     <ImageView
         android:id="@+id/background_poster"
@@ -42,8 +42,8 @@
 
             <ImageView
                 android:id="@+id/poster"
-                android:layout_width="150dp"
-                android:layout_height="230dp"
+                android:layout_width="@dimen/movie_details_poster_width"
+                android:layout_height="@dimen/movie_details_poster_height"
                 android:layout_marginTop="@dimen/middle_margin"
                 app:layout_constraintStart_toStartOf="@id/margin_start"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -113,7 +113,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/middle_margin"
-                android:text="@string/vote_example"
+                android:text="@string/vote_average_example"
                 app:layout_constraintEnd_toStartOf="@id/margin_end"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/title_and_release_date"
@@ -192,8 +192,4 @@
                 android:layout_marginTop="@dimen/middle_margin"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
-
-
-
 </FrameLayout>

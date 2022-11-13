@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/moviesFragment"
-        android:name="com.education.movie.presentation.fragments.mainscreen.MainScreenFragment"
+        android:name="com.education.movie.presentation.fragments.mainscreen.PopularMoviesFragment"
         android:label="Popular movies"
-        tools:layout="@layout/fragment_main_screen" >
+        tools:layout="@layout/fragment_popular_movies" >
         <action
             android:id="@+id/action_moviesFragment_to_movieFragment"
             app:destination="@id/movieFragment"
@@ -18,6 +18,6 @@
     </fragment>
     <fragment
         android:id="@+id/movieFragment"
-        android:name="com.education.movie.presentation.fragments.movie.MovieFragment"
-        tools:layout="@layout/fragment_movie" />
+        android:name="com.education.movie.presentation.fragments.movie.MovieDetailsFragment"
+        tools:layout="@layout/fragment_movie_details" />
 </navigation>

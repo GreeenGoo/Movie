@@ -3,7 +3,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    //fragment_xml
+    //fragment_movie_details.xml
     <string name="primary_poster_title">Title</string>
     <string name="overview_text">Overview</string>
     <string name="release_date_text">00.00.0000</string>
@@ -12,7 +12,7 @@
     <string name="release_date_example">00.00.0000</string>
     <string name="genres_example">Genres</string>
     <string name="runtime_example">0 h 00 m</string>
-    <string name="vote_example">0.00 (00000)</string>
+    <string name="vote_average_example">0.00 (00000)</string>
     <string name="homepage_example">https://api.themoviedb.org/</string>
     <string name="production_countries_example"><![CDATA[United Kingdom, USA< Belarus]]></string>
     <string name="spoken_language_example">Spoken language</string>
@@ -20,7 +20,7 @@
     <string name="companies_example">Companies:</string>
     <string name="budget_example">0000000000$</string>
 
-    //Fragment_movie
+    //MovieDetailsFragment
     <string name="release_date_title">Release date:\u0020</string>
     <string name="genres_title">Genres:\u0020</string>
     <string name="runtime_title">Runtime:\u0020</string>

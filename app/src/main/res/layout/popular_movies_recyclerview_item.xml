@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/poster_imageview"
-        android:layout_width="@dimen/imageView_width"
-        android:layout_height="@dimen/imageView_height"
+        android:layout_width="@dimen/popular_movies_poster_width"
+        android:layout_height="@dimen/popular_movies_poster_height"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

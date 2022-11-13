@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import retrofit2.Response
 
 @HiltViewModel
-class MainScreenViewModel @Inject constructor(
+class PopularMoviesViewModel @Inject constructor(
     private val repository: MoviesRepository,
 ) : ViewModel() {
     val listOfMovies = MutableLiveData<Response<PageOfMoviesResponse>>()

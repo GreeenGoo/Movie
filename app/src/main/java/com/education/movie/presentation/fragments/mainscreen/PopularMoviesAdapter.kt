@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.education.movie.R
 import com.education.movie.data.models.mainscreen.PageOfMoviesResponse
-import kotlinx.android.synthetic.main.main_screen_recyclerview_item.view.main_screen_recyclerview_item
-import kotlinx.android.synthetic.main.main_screen_recyclerview_item.view.overview
-import kotlinx.android.synthetic.main.main_screen_recyclerview_item.view.poster_imageview
-import kotlinx.android.synthetic.main.main_screen_recyclerview_item.view.release_date
-import kotlinx.android.synthetic.main.main_screen_recyclerview_item.view.title
+import kotlinx.android.synthetic.main.popular_movies_recyclerview_item.view.main_screen_recyclerview_item
+import kotlinx.android.synthetic.main.popular_movies_recyclerview_item.view.overview
+import kotlinx.android.synthetic.main.popular_movies_recyclerview_item.view.poster_imageview
+import kotlinx.android.synthetic.main.popular_movies_recyclerview_item.view.release_date
+import kotlinx.android.synthetic.main.popular_movies_recyclerview_item.view.title
 
 typealias OnItemClickListener = (position: Int) -> Unit
 
@@ -24,7 +24,7 @@ class MainScreenAdapter (private val onItemClickListener: OnItemClickListener) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.main_screen_recyclerview_item, parent, false
+                R.layout.popular_movies_recyclerview_item, parent, false
             )
         )
     }
