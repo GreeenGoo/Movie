@@ -7,7 +7,17 @@
 
     <fragment
         android:id="@+id/moviesFragment"
-        android:name="com.education.movie.presentation.fragments.MoviesFragment"
-        android:label="fragment_movies"
-        tools:layout="@layout/fragment_movies" />
+        android:name="com.education.movie.presentation.fragments.mainscreen.PopularMoviesFragment"
+        android:label="Popular movies"
+        tools:layout="@layout/fragment_popular_movies" >
+        <action
+            android:id="@+id/action_moviesFragment_to_movieFragment"
+            app:destination="@id/movieFragment"
+            app:enterAnim="@anim/fast_fade_in"
+            app:exitAnim="@anim/fast_fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieFragment"
+        android:name="com.education.movie.presentation.fragments.movie.MovieDetailsFragment"
+        tools:layout="@layout/fragment_movie_details" />
 </navigation>

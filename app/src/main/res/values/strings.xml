@@ -2,7 +2,33 @@
     <string name="app_name">Movie</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    //fragment_movie_details.xml
     <string name="primary_poster_title">Title</string>
     <string name="overview_text">Overview</string>
     <string name="release_date_text">00.00.0000</string>
+    <string name="title_release_year_example">Title (Release year)</string>
+    <string name="tagline_example">"Tagline about the film"</string>
+    <string name="release_date_example">00.00.0000</string>
+    <string name="genres_example">Genres</string>
+    <string name="runtime_example">0 h 00 m</string>
+    <string name="vote_average_example">0.00 (00000)</string>
+    <string name="homepage_example">https://api.themoviedb.org/</string>
+    <string name="production_countries_example"><![CDATA[United Kingdom, USA< Belarus]]></string>
+    <string name="spoken_language_example">Spoken language</string>
+    <string name="overview_example">Overview</string>
+    <string name="companies_example">Companies:</string>
+    <string name="budget_example">0000000000$</string>
+
+    //MovieDetailsFragment
+    <string name="release_date_title">Release date:\u0020</string>
+    <string name="genres_title">Genres:\u0020</string>
+    <string name="runtime_title">Runtime:\u0020</string>
+    <string name="vote_title">Vote:\u0020</string>
+    <string name="production_countries_title">Production countries:\u0020</string>
+    <string name="spoken_languages_title">Spoken languages:\u0020</string>
+    <string name="production_companies_title">Production companies:\u0020</string>
+    <string name="budget_title">Budget:\u0020</string>
+    <string name="revenue_title">Revenue:\u0020</string>
+    <string name="home_page_title">Home page:\u0020</string>
 </resources>
