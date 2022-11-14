@@ -1,8 +1,8 @@
-package com.education.movie.data.entity
+package com.education.movie.data.models
 
 import com.google.gson.annotations.SerializedName
 
-data class MovieListResultEntity(
+data class ListOfMoviesResponse(
     @SerializedName("adult")
     val isAdult: Boolean,
 
@@ -12,6 +12,7 @@ data class MovieListResultEntity(
     @SerializedName("genre_ids")
     val genreIds: List<Int>,
 
+    @SerializedName("id")
     val id: Int,
 
     @SerializedName("original_language")
@@ -20,8 +21,10 @@ data class MovieListResultEntity(
     @SerializedName("original_title")
     val originalTitle: String,
 
+    @SerializedName("overview")
     val overview: String,
 
+    @SerializedName("popularity")
     val popularity: Float,
 
     @SerializedName("poster_path")
@@ -30,8 +33,10 @@ data class MovieListResultEntity(
     @SerializedName("release_date")
     val releaseDate: String,
 
+    @SerializedName("title")
     val title: String,
 
+    @SerializedName("video")
     val video: Boolean,
 
     @SerializedName("vote_average")
