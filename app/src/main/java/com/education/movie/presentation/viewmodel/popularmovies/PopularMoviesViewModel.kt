@@ -1,9 +1,9 @@
-package com.education.movie.presentation.viewmodel.mainscreen
+package com.education.movie.presentation.viewmodel.popularmovies
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.education.movie.data.models.mainscreen.PageOfMoviesResponse
+import com.education.movie.data.models.popularmovies.PageOfMoviesResponse
 import com.education.movie.data.models.movie.MovieResponse
 import com.education.movie.data.repository.MoviesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,10 +18,10 @@ class PopularMoviesViewModel @Inject constructor(
     val listOfMovies = MutableLiveData<Response<PageOfMoviesResponse>>()
     val movie = MutableLiveData<Response<MovieResponse>>()
 
-    init {
+    fun showPageOfMovies(page: Int){
         viewModelScope.launch {
             try {
-                listOfMovies.value = repository.getPageOfMovies()
+                listOfMovies.value = repository.getPageOfMovies(page)
             } catch (e: Exception) {
             }
         }

@@ -1,4 +1,4 @@
-package com.education.movie.data.models.mainscreen
+package com.education.movie.data.models.popularmovies
 
 import com.google.gson.annotations.SerializedName
 
