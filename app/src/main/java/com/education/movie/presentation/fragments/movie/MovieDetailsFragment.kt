@@ -16,8 +16,8 @@ import com.education.movie.data.models.movie.GenresResponse
 import com.education.movie.data.models.movie.ProductionCompaniesResponse
 import com.education.movie.data.models.movie.ProductionCountriesResponse
 import com.education.movie.data.models.movie.SpokenLanguagesResponse
-import com.education.movie.presentation.fragments.mainscreen.MainScreenAdapter
-import com.education.movie.presentation.viewmodel.mainscreen.PopularMoviesViewModel
+import com.education.movie.presentation.fragments.popularmovies.PopularMoviesAdapter
+import com.education.movie.presentation.viewmodel.popularmovies.PopularMoviesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_movie_details.background_poster
 import kotlinx.android.synthetic.main.fragment_movie_details.budget
@@ -154,7 +154,7 @@ class MovieDetailsFragment : Fragment() {
 
     private fun uploadPicture(imageView: ImageView, URI: String) {
         Glide.with(requireContext())
-            .load(Uri.parse("${MainScreenAdapter.BASE_URI_FOR_IMAGES}${URI}"))
+            .load(Uri.parse("${PopularMoviesAdapter.BASE_URI_FOR_IMAGES}${URI}"))
             .centerCrop()
             .into(imageView)
     }
