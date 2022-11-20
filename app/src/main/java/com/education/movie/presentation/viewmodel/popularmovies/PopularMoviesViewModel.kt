@@ -1,4 +1,4 @@
-package com.education.movie.presentation.viewmodel.popularmovies
+package com.education.movie.presentation.viewmodel.mainscreen
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
