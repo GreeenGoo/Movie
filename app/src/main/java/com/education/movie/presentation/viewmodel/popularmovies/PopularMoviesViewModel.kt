@@ -1,10 +1,12 @@
 package com.education.movie.presentation.viewmodel.popularmovies
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.education.movie.data.models.popularmovies.PageOfMoviesResponse
 import com.education.movie.data.models.movie.MovieResponse
+import com.education.movie.data.models.popularmovies.ListOfMoviesResponse
 import com.education.movie.data.repository.MoviesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -15,13 +17,20 @@ import retrofit2.Response
 class PopularMoviesViewModel @Inject constructor(
     private val repository: MoviesRepository,
 ) : ViewModel() {
-    val listOfMovies = MutableLiveData<Response<PageOfMoviesResponse>>()
+    val pageOfMovies = MutableLiveData<Response<PageOfMoviesResponse>>()
     val movie = MutableLiveData<Response<MovieResponse>>()
+    var listOfDownloadedMovies: ArrayList<ListOfMoviesResponse> = ArrayList()
+    var numberOfPage = 1
+
+    init {
+        showPageOfMovies(numberOfPage)
+        Log.e("1111", "init")
+    }
 
     fun showPageOfMovies(page: Int){
         viewModelScope.launch {
             try {
-                listOfMovies.value = repository.getPageOfMovies(page)
+                pageOfMovies.value = repository.getPageOfMovies(page)
             } catch (e: Exception) {
             }
         }

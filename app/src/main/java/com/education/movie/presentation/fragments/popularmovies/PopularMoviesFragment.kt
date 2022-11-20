@@ -12,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.education.movie.R
-import com.education.movie.data.models.popularmovies.ListOfMoviesResponse
 import com.education.movie.data.models.popularmovies.PageOfMoviesResponse
 import com.education.movie.databinding.FragmentPopularMoviesBinding
 import com.education.movie.presentation.viewmodel.popularmovies.PopularMoviesViewModel
@@ -26,17 +25,12 @@ class PopularMoviesFragment : Fragment() {
     private val viewModel: PopularMoviesViewModel by viewModels()
     private var adapter = PopularMoviesAdapter(::onItemClick)
     private lateinit var binding: FragmentPopularMoviesBinding
-    private var listOfMovies: ArrayList<ListOfMoviesResponse> = ArrayList()
-    private var pageCounter = 1
-    private var pageOfMovies = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentPopularMoviesBinding.inflate(inflater, container, false)
-        pageOfMovies = 1
-        viewModel.showPageOfMovies(pageOfMovies)
         return binding.root
     }
 
@@ -51,37 +45,39 @@ class PopularMoviesFragment : Fragment() {
         recyclerView.adapter = adapter
     }
 
-    private fun initScrollListener(page: Int) {
+    private fun initScrollListener(movies: PageOfMoviesResponse) {
         val layoutManager = recycler_view.layoutManager as LinearLayoutManager
         recycler_view.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-
                 val totalItemCount = layoutManager.itemCount
                 val lastItemCount = layoutManager.findLastVisibleItemPosition()
-                println()
-                if (totalItemCount - differenceNumber == lastItemCount && page == pageCounter) {
-                    pageOfMovies++
+                if (totalItemCount - differenceNumber == lastItemCount && movies.page == viewModel.numberOfPage) {
                     Toast.makeText(
                         requireContext(),
-                        "Page $pageOfMovies was downloaded",
+                        "Page ${viewModel.numberOfPage} was downloaded",
                         Toast.LENGTH_SHORT
                     ).show()
-                    viewModel.showPageOfMovies(pageOfMovies)
-                    pageCounter++
+                    viewModel.numberOfPage++
+                    viewModel.showPageOfMovies(viewModel.numberOfPage)
+                    viewModel.listOfDownloadedMovies.addAll(movies.results)
                 }
             }
         })
     }
 
     private fun dataToRecyclerViewInit() {
-        viewModel.listOfMovies.observe(viewLifecycleOwner) { response ->
+        viewModel.pageOfMovies.observe(viewLifecycleOwner) { response ->
             try {
                 response.body()?.let { movies ->
-                    initScrollListener(pageCounter)
-                    listOfMovies.addAll(movies.results)
-                    adapter.setData(listOfMovies)
+                    if (viewModel.numberOfPage == 1) {
+                        viewModel.listOfDownloadedMovies.addAll(movies.results)
+                        viewModel.numberOfPage++
+                        viewModel.showPageOfMovies(viewModel.numberOfPage)
+                    }
+                    initScrollListener(movies)
+                    adapter.setData(viewModel.listOfDownloadedMovies)
                 }
             } catch (e: Exception) {
                 val builder = AlertDialog.Builder(requireContext())
@@ -97,7 +93,7 @@ class PopularMoviesFragment : Fragment() {
 
     private fun onItemClick(position: Int) {
         val selectedItem = Bundle()
-        val list = listOfMovies[position].id
+        val list = viewModel.listOfDownloadedMovies[position].id
         selectedItem.putInt(PopularMoviesViewModel.BUNDLE_KEY, list)
         findNavController().navigate(
             R.id.action_moviesFragment_to_movieFragment,
