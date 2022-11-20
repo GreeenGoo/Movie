@@ -1,4 +1,4 @@
-package com.education.movie.presentation.fragments.mainscreen
+package com.education.movie.presentation.fragments.popularmovies
 
 import android.net.Uri
 import android.view.LayoutInflater
@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.education.movie.R
-import com.education.movie.data.models.mainscreen.PageOfMoviesResponse
+import com.education.movie.data.models.popularmovies.ListOfMoviesResponse
+import com.education.movie.data.models.popularmovies.PageOfMoviesResponse
+import java.util.ArrayList
 import kotlinx.android.synthetic.main.popular_movies_recyclerview_item.view.main_screen_recyclerview_item
 import kotlinx.android.synthetic.main.popular_movies_recyclerview_item.view.overview
 import kotlinx.android.synthetic.main.popular_movies_recyclerview_item.view.poster_imageview
@@ -16,8 +18,8 @@ import kotlinx.android.synthetic.main.popular_movies_recyclerview_item.view.titl
 
 typealias OnItemClickListener = (position: Int) -> Unit
 
-class MainScreenAdapter (private val onItemClickListener: OnItemClickListener) : RecyclerView.Adapter<MainScreenAdapter.ViewHolder>() {
-    private var moviesList = PageOfMoviesResponse(0, emptyList(), 0, 0)
+class PopularMoviesAdapter (private val onItemClickListener: OnItemClickListener) : RecyclerView.Adapter<PopularMoviesAdapter.ViewHolder>() {
+    private var listOfMovies : ArrayList<ListOfMoviesResponse> = ArrayList()
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -29,23 +31,23 @@ class MainScreenAdapter (private val onItemClickListener: OnItemClickListener) :
         )
     }
 
-    override fun getItemCount(): Int = moviesList.results.size
+    override fun getItemCount(): Int = listOfMovies.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         Glide.with(holder.itemView.context)
-            .load(Uri.parse("$BASE_URI_FOR_IMAGES${moviesList.results[position].posterPath}"))
+            .load(Uri.parse("$BASE_URI_FOR_IMAGES${listOfMovies[position].posterPath}"))
             .centerCrop()
             .into(holder.itemView.poster_imageview)
-        holder.itemView.title.text = moviesList.results[position].title
-        holder.itemView.overview.text = moviesList.results[position].overview
-        holder.itemView.release_date.text = moviesList.results[position].releaseDate
+        holder.itemView.title.text = listOfMovies[position].title
+        holder.itemView.overview.text = listOfMovies[position].overview
+        holder.itemView.release_date.text = listOfMovies[position].releaseDate
         holder.itemView.main_screen_recyclerview_item.setOnClickListener{
             onItemClickListener(position)
         }
     }
 
-    fun setData(movies: PageOfMoviesResponse) {
-        moviesList = movies
+    fun setData(movies: ArrayList<ListOfMoviesResponse>) {
+        listOfMovies = movies
         notifyDataSetChanged()
     }
 
