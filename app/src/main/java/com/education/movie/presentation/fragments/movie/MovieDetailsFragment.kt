@@ -17,7 +17,7 @@ import com.education.movie.data.models.movie.ProductionCompaniesResponse
 import com.education.movie.data.models.movie.ProductionCountriesResponse
 import com.education.movie.data.models.movie.SpokenLanguagesResponse
 import com.education.movie.presentation.fragments.popularmovies.PopularMoviesAdapter
-import com.education.movie.presentation.viewmodel.popularmovies.PopularMoviesViewModel
+import com.education.movie.presentation.viewmodel.mainscreen.PopularMoviesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_movie_details.background_poster
 import kotlinx.android.synthetic.main.fragment_movie_details.budget
