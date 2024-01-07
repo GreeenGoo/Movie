@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.education.movie.R
@@ -16,7 +17,7 @@ import com.education.movie.data.models.popularmovies.PageOfMoviesResponse
 import com.education.movie.databinding.FragmentPopularMoviesBinding
 import com.education.movie.presentation.viewmodel.mainscreen.PopularMoviesViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_popular_movies.recycler_view
+//import kotlinx.android.synthetic.main.fragment_popular_movies.recycler_view
 import kotlin.system.exitProcess
 
 @AndroidEntryPoint
@@ -43,11 +44,12 @@ class PopularMoviesFragment : Fragment() {
     private fun recyclerViewInit() {
         val recyclerView = binding.recyclerView
         recyclerView.adapter = adapter
+        recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
     }
 
     private fun initScrollListener(movies: PageOfMoviesResponse) {
-        val layoutManager = recycler_view.layoutManager as LinearLayoutManager
-        recycler_view.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        val layoutManager = binding.recyclerView.layoutManager as LinearLayoutManager
+        binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)

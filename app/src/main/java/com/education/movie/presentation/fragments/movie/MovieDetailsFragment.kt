@@ -16,35 +16,40 @@ import com.education.movie.data.models.movie.GenresResponse
 import com.education.movie.data.models.movie.ProductionCompaniesResponse
 import com.education.movie.data.models.movie.ProductionCountriesResponse
 import com.education.movie.data.models.movie.SpokenLanguagesResponse
+import com.education.movie.databinding.FragmentMovieDetailsBinding
 import com.education.movie.presentation.fragments.popularmovies.PopularMoviesAdapter
 import com.education.movie.presentation.viewmodel.mainscreen.PopularMoviesViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_movie_details.background_poster
-import kotlinx.android.synthetic.main.fragment_movie_details.budget
-import kotlinx.android.synthetic.main.fragment_movie_details.companies
-import kotlinx.android.synthetic.main.fragment_movie_details.homepage
-import kotlinx.android.synthetic.main.fragment_movie_details.movie_genres
-import kotlinx.android.synthetic.main.fragment_movie_details.overview
-import kotlinx.android.synthetic.main.fragment_movie_details.poster
-import kotlinx.android.synthetic.main.fragment_movie_details.production_countries
-import kotlinx.android.synthetic.main.fragment_movie_details.release_date
-import kotlinx.android.synthetic.main.fragment_movie_details.revenue
-import kotlinx.android.synthetic.main.fragment_movie_details.runtime
-import kotlinx.android.synthetic.main.fragment_movie_details.spoken_language
-import kotlinx.android.synthetic.main.fragment_movie_details.tagline
-import kotlinx.android.synthetic.main.fragment_movie_details.title_and_release_date
-import kotlinx.android.synthetic.main.fragment_movie_details.vote
+//import kotlinx.android.synthetic.main.fragment_movie_details.background_poster
+//import kotlinx.android.synthetic.main.fragment_movie_details.budget
+//import kotlinx.android.synthetic.main.fragment_movie_details.companies
+//import kotlinx.android.synthetic.main.fragment_movie_details.homepage
+//import kotlinx.android.synthetic.main.fragment_movie_details.movie_genres
+//import kotlinx.android.synthetic.main.fragment_movie_details.overview
+//import kotlinx.android.synthetic.main.fragment_movie_details.poster
+//import kotlinx.android.synthetic.main.fragment_movie_details.production_countries
+//import kotlinx.android.synthetic.main.fragment_movie_details.release_date
+//import kotlinx.android.synthetic.main.fragment_movie_details.revenue
+//import kotlinx.android.synthetic.main.fragment_movie_details.runtime
+//import kotlinx.android.synthetic.main.fragment_movie_details.spoken_language
+//import kotlinx.android.synthetic.main.fragment_movie_details.tagline
+//import kotlinx.android.synthetic.main.fragment_movie_details.title_and_release_date
+//import kotlinx.android.synthetic.main.fragment_movie_details.vote
 
 @AndroidEntryPoint
 class MovieDetailsFragment : Fragment() {
 
     private val viewModel: PopularMoviesViewModel by viewModels()
+    private var _binding: FragmentMovieDetailsBinding?=null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_movie_details, container, false)
+        _binding = FragmentMovieDetailsBinding.inflate(inflater, container, false)
+        return binding.root
+//        return inflater.inflate(R.layout.fragment_movie_details, container, false)
     }
 
     @SuppressLint("SetTextI18n")
@@ -60,88 +65,88 @@ class MovieDetailsFragment : Fragment() {
             viewModel.getMovie(id)
             viewModel.movie.observe(viewLifecycleOwner) { response ->
                 try {
-                    uploadPicture(background_poster, response.body()!!.backdropPath)
-                    title_and_release_date.text =
+                    uploadPicture(binding.backgroundPoster, response.body()!!.backdropPath)
+                    binding.titleAndReleaseDate.text =
                         "${response.body()?.title} (${getYearFromDate(response.body()?.releaseDate.toString())})"
-                    uploadPicture(poster, response.body()!!.posterPath)
+                    uploadPicture(binding.poster, response.body()!!.posterPath)
                     if (response.body()!!.tagline.isEmpty()) {
-                        tagline.visibility = View.GONE
+                        binding.tagline.visibility = View.GONE
                     } else {
-                        tagline.text =
+                        binding.tagline.text =
                             response.body()!!.tagline
                     }
                     if (response.body()!!.releaseDate.isEmpty()) {
-                        release_date.visibility = View.GONE
+                        binding.releaseDate.visibility = View.GONE
                     } else {
-                        release_date.text =
+                        binding.releaseDate.text =
                             getString(R.string.release_date_title) + convertDataToRightFormat(
                                 response.body()!!.releaseDate
                             )
                     }
                     if (response.body()!!.genres.isEmpty()) {
-                        movie_genres.visibility = View.GONE
+                        binding.movieGenres.visibility = View.GONE
                     } else {
-                        movie_genres.text =
+                        binding.movieGenres.text =
                             getString(R.string.genres_title) + createGenresLine(response.body()!!.genres)
                     }
                     if (response.body()!!.runtime == 0) {
-                        runtime.visibility = View.GONE
+                        binding.runtime.visibility = View.GONE
                     } else {
-                        runtime.text =
+                        binding.runtime.text =
                             getString(R.string.runtime_title) + "${response.body()!!.runtime / 60} h ${response.body()!!.runtime % 60} min"
                     }
                     if (response.body()!!.voteAverage == 0f || response.body()!!.voteCount == 0) {
-                        vote.visibility = View.GONE
+                        binding.vote.visibility = View.GONE
                     } else {
-                        vote.text =
+                        binding.vote.text =
                             getString(R.string.vote_title) + "${response.body()!!.voteAverage} (${response.body()!!.voteCount} voices)"
                     }
                     if (response.body()!!.homepage.isEmpty()) {
-                        homepage.visibility = View.GONE
+                        binding.homepage.visibility = View.GONE
                     } else {
-                        homepage.text =
+                        binding.homepage.text =
                             getString(R.string.home_page_title) + response.body()!!.homepage
                     }
                     if (response.body()!!.productionCountries.isEmpty()) {
-                        production_countries.visibility = View.GONE
+                        binding.productionCountries.visibility = View.GONE
                     } else {
-                        production_countries.text =
+                        binding.productionCountries.text =
                             getString(R.string.production_countries_title) + createCountriesLine(
                                 response.body()!!.productionCountries
                             )
                     }
                     if (response.body()!!.spokenLanguages.isEmpty()) {
-                        spoken_language.visibility = View.GONE
+                        binding.spokenLanguage.visibility = View.GONE
                     } else {
-                        spoken_language.text =
+                        binding.spokenLanguage.text =
                             getString(R.string.spoken_languages_title) + createLanguagesLine(
                                 response.body()!!.spokenLanguages
                             )
                     }
                     if (response.body()!!.overview.isEmpty()) {
-                        overview.visibility = View.GONE
+                        binding.overview.visibility = View.GONE
                     } else {
-                        overview.text =
+                        binding.overview.text =
                             response.body()!!.overview
                     }
                     if (response.body()!!.productionCompanies.isEmpty()) {
-                        companies.visibility = View.GONE
+                        binding.companies.visibility = View.GONE
                     } else {
-                        companies.text =
+                        binding.companies.text =
                             getString(R.string.production_companies_title) + createCompaniesLine(
                                 response.body()!!.productionCompanies
                             )
                     }
                     if (response.body()!!.budget == 0) {
-                        budget.visibility = View.GONE
+                        binding.budget.visibility = View.GONE
                     } else {
-                        budget.text =
+                        binding.budget.text =
                             getString(R.string.budget_title) + "${response.body()!!.budget}$"
                     }
                     if (response.body()!!.revenue == 0) {
-                        revenue.visibility = View.GONE
+                        binding.revenue.visibility = View.GONE
                     } else {
-                        revenue.text =
+                        binding.revenue.text =
                             getString(R.string.revenue_title) + "${response.body()!!.revenue}$"
                     }
 
