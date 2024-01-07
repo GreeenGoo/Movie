@@ -43,8 +43,8 @@ class PopularMoviesAdapter (private val onItemClickListener: OnItemClickListener
             .centerCrop()
             .into(binding.posterImageview)
         binding.title.text = listOfMovies[position].title
-        binding.overview.text = listOfMovies[position].overview
-        binding.releaseDate.text = listOfMovies[position].releaseDate
+//        binding.overview.text = listOfMovies[position].overview
+//        binding.releaseDate.text = listOfMovies[position].releaseDate
         binding.mainScreenRecyclerviewItem.setOnClickListener{
             onItemClickListener(position)
         }
