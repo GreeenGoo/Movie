@@ -15,7 +15,7 @@
     <string name="runtime_example">0 h 00 m</string>
     <string name="vote_average_example">0.00 (00000)</string>
     <string name="homepage_example">https://api.themoviedb.org/</string>
-    <string name="production_countries_example"><![CDATA[United Kingdom, USA< Belarus]]></string>
+    <string name="production_countries_example"><![CDATA[United Kingdom, USA, Belarus]]></string>
     <string name="spoken_language_example">Spoken language</string>
     <string name="overview_example">Overview</string>
     <string name="companies_example">Companies:</string>

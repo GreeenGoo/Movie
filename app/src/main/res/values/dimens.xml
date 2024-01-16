@@ -2,11 +2,15 @@
 <resources>
     <dimen name="middle_margin">5dp</dimen>
     <dimen name="big_margin">10dp</dimen>
+    <dimen name="l_big_margin">20dp</dimen>
+    <dimen name="xl_big_margin">30dp</dimen>
+
+    <dimen name="l_big_textSize">30sp</dimen>
     <dimen name="big_textSize">20sp</dimen>
     <dimen name="middle_textSize">16sp</dimen>
     <dimen name="small_textSize">12sp</dimen>
     <dimen name="popular_movies_poster_width">120dp</dimen>
     <dimen name="popular_movies_poster_height">180dp</dimen>
     <dimen name="movie_details_poster_width">150dp</dimen>
-    <dimen name="movie_details_poster_height">230dp</dimen>
+    <dimen name="movie_details_poster_height">530dp</dimen>
 </resources>
