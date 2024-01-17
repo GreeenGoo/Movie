@@ -7,37 +7,10 @@
     android:background="@color/grey_background_color"
     tools:context=".presentation.fragments.movie.MovieDetailsFragment">
 
-    <!--    <ImageView-->
-    <!--        android:id="@+id/background_poster"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        android:alpha="0.2"/>-->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/margin_start"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="@dimen/middle_margin" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/margin_end"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="@dimen/middle_margin" />
-
-        <androidx.constraintlayout.widget.Barrier
-            android:id="@+id/title_section_bottom_barrier"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:barrierDirection="bottom"
-            app:constraint_referenced_ids="poster" />
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -47,9 +20,7 @@
                 android:id="@+id/poster"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/movie_details_poster_height"
-                android:layout_marginTop="@dimen/middle_margin"
-                app:layout_constraintStart_toStartOf="@id/margin_start"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_marginTop="@dimen/small_margin" />
 
             <View
                 android:layout_width="match_parent"
@@ -58,12 +29,11 @@
 
             <ImageView
                 android:id="@+id/back_page_icon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="@dimen/l_big_margin"
+                android:layout_width="@dimen/back_arrow_button_width"
+                android:layout_height="@dimen/back_arrow_button_height"
+                android:layout_marginStart="@dimen/big_margin"
                 android:layout_marginTop="@dimen/xl_big_margin"
                 android:src="@drawable/baseline_arrow_back_ios_24" />
-
         </FrameLayout>
 
         <LinearLayout
@@ -72,7 +42,7 @@
             android:orientation="horizontal">
 
             <Space
-                android:layout_width="15dp"
+                android:layout_width="@dimen/movie_details_horizontal_barrier"
                 android:layout_height="0dp" />
 
             <LinearLayout
@@ -86,7 +56,7 @@
                     style="@style/Header"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/big_margin"
+                    android:layout_marginTop="@dimen/middle_margin"
                     android:inputType="textMultiLine"
                     android:text="@string/title_release_year_example"
                     tools:ignore="TextViewEdits" />
@@ -94,90 +64,91 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/l_big_margin"
+                    android:layout_marginTop="@dimen/big_margin"
                     android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/baseline_access_time_24"
-                        app:tint="#BCBCBC" />
+                        app:tint="@color/movie_details_icons_tint" />
 
                     <TextView
                         android:id="@+id/runtime"
                         style="@style/CasualTextStyle"
                         android:layout_width="wrap_content"
-                        android:layout_height="24dp"
-                        android:layout_marginStart="@dimen/middle_margin"
+                        android:layout_height="@dimen/movie_details_text_after_icons_height"
+                        android:layout_marginStart="@dimen/small_margin"
                         android:gravity="center"
-                        android:text="2h 4m" />
+                        android:text="@string/movie_details_runtime_text_example" />
 
                     <Space
                         android:layout_width="0dp"
-                        android:layout_height="1dp"
+                        android:layout_height="0dp"
                         android:layout_weight="1" />
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/baseline_star_24"
-                        app:tint="#FFEB3B" />
+                        app:tint="@color/movie_details_star_icon_tint" />
 
                     <TextView
                         android:id="@+id/vote"
                         style="@style/CasualTextStyle"
                         android:layout_width="wrap_content"
-                        android:layout_height="24dp"
-                        android:layout_marginStart="@dimen/middle_margin"
+                        android:layout_height="@dimen/movie_details_text_after_icons_height"
+                        android:layout_marginStart="@dimen/small_margin"
                         android:gravity="center"
-                        android:text="6.5 (184)" />
+                        android:text="@string/movie_details_vote_example" />
 
                     <Space
                         android:layout_width="0dp"
-                        android:layout_height="1dp"
+                        android:layout_height="0dp"
                         android:layout_weight="1" />
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/baseline_calendar_month_24"
-                        app:tint="#BCBCBC" />
+                        app:tint="@color/movie_details_icons_tint" />
 
                     <TextView
                         android:id="@+id/release_date"
                         style="@style/CasualTextStyle"
                         android:layout_width="wrap_content"
-                        android:layout_height="24dp"
-                        android:layout_marginStart="@dimen/middle_margin"
+                        android:layout_height="@dimen/movie_details_text_after_icons_height"
+                        android:layout_marginStart="@dimen/small_margin"
                         android:gravity="center"
-                        android:text="December 20, 2023" />
+                        android:text="@string/movie_details_release_date_example" />
 
                 </LinearLayout>
 
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0.2dp"
-                    android:layout_marginTop="@dimen/big_margin"
-                    android:layout_marginBottom="@dimen/middle_margin"
-                    android:background="#515151" />
+                    android:layout_height="@dimen/movie_details_barrier_height"
+                    android:layout_marginTop="@dimen/middle_margin"
+                    android:layout_marginBottom="@dimen/small_margin"
+                    android:background="@color/movie_details_barrier_background_tint" />
 
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <TextView
+                        style="@style/Header2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/big_margin"
-                        style="@style/Header2"
+                        android:layout_marginTop="@dimen/middle_margin"
                         android:inputType="textMultiLine"
-                        android:text="@string/genres_example"/>
+                        android:text="@string/genres_example"
+                        tools:ignore="TextViewEdits" />
 
                     <com.google.android.flexbox.FlexboxLayout
                         android:id="@+id/genresFlexboxLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="110dp"
+                        android:layout_marginStart="@dimen/movie_details_flexbox_layout_marginStart"
                         app:dividerDrawable="@drawable/divider"
                         app:flexWrap="wrap"
                         app:showDivider="beginning|middle" />
@@ -185,185 +156,159 @@
 
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0.2dp"
-                    android:layout_marginTop="@dimen/big_margin"
-                    android:background="#515151" />
+                    android:layout_height="@dimen/movie_details_barrier_height"
+                    android:layout_marginTop="@dimen/middle_margin"
+                    android:background="@color/movie_details_barrier_background_tint" />
 
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/middle_margin"
-                    android:orientation="horizontal">
+                    android:layout_marginVertical="@dimen/small_margin">
 
                     <TextView
+                        style="@style/Header2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/big_margin"
-                        android:fontFamily="@font/lato_regular"
+                        android:layout_marginTop="@dimen/middle_margin"
                         android:inputType="textMultiLine"
-                        android:text="Languages"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/big_textSize" />
+                        android:text="@string/movie_details_language_example"
+                        tools:ignore="TextViewEdits" />
 
                     <com.google.android.flexbox.FlexboxLayout
                         android:id="@+id/languagesFlexboxLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="110dp"
+                        android:layout_marginStart="@dimen/movie_details_flexbox_layout_marginStart"
                         app:dividerDrawable="@drawable/divider"
                         app:flexWrap="wrap"
                         app:showDivider="beginning|middle" />
-
                 </FrameLayout>
-
-
-                <!--            <TextView-->
-                <!--                android:id="@+id/runtime"-->
-                <!--                android:layout_width="wrap_content"-->
-                <!--                android:layout_height="wrap_content"-->
-                <!--                android:layout_marginTop="@dimen/middle_margin"-->
-                <!--                android:text="@string/runtime_example"-->
-                <!--                app:layout_constraintEnd_toStartOf="@id/margin_end"-->
-                <!--                app:layout_constraintHorizontal_bias="0.0"-->
-                <!--                app:layout_constraintStart_toStartOf="@id/title_and_release_date"-->
-                <!--                app:layout_constraintTop_toBottomOf="@id/movie_genres" />-->
-
-                <!--            <TextView-->
-                <!--                android:id="@+id/vote"-->
-                <!--                android:layout_width="wrap_content"-->
-                <!--                android:layout_height="wrap_content"-->
-                <!--                android:layout_marginTop="@dimen/middle_margin"-->
-                <!--                android:text="@string/vote_average_example"-->
-                <!--                app:layout_constraintEnd_toStartOf="@id/margin_end"-->
-                <!--                app:layout_constraintHorizontal_bias="0.0"-->
-                <!--                app:layout_constraintStart_toStartOf="@id/title_and_release_date"-->
-                <!--                app:layout_constraintTop_toBottomOf="@id/runtime" />-->
 
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0.2dp"
-                    android:layout_marginTop="@dimen/big_margin"
-                    android:background="#515151" />
+                    android:layout_height="@dimen/movie_details_barrier_height"
+                    android:layout_marginTop="@dimen/middle_margin"
+                    android:background="@color/movie_details_barrier_background_tint" />
 
                 <TextView
+                    android:id="@+id/details_title"
+                    style="@style/Header2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/big_margin"
-                    android:layout_marginBottom="@dimen/middle_margin"
-                    android:fontFamily="@font/lato_regular"
+                    android:layout_marginTop="@dimen/middle_margin"
+                    android:layout_marginBottom="@dimen/small_margin"
                     android:inputType="textMultiLine"
-                    android:text="Details"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/big_textSize" />
+                    android:text="@string/movie_details_details_example"
+                    tools:ignore="TextViewEdits" />
 
                 <TextView
-                    android:id="@+id/overview"
+                    android:id="@+id/details"
                     style="@style/CasualTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/middle_margin"
+                    android:layout_marginTop="@dimen/small_margin"
                     android:text="@string/overview_example" />
 
                 <TextView
+                    android:id="@+id/production_companies_title"
+                    style="@style/Header3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/l_big_margin"
-                    android:fontFamily="@font/lato_regular"
+                    android:layout_marginTop="@dimen/big_margin"
                     android:inputType="textMultiLine"
-                    android:text="Production Companies"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/middle_textSize" />
+                    android:text="@string/movie_details_production_companies_example"
+                    tools:ignore="TextViewEdits" />
 
                 <TextView
-                    android:id="@+id/companies"
+                    android:id="@+id/production_companies"
                     style="@style/CasualTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/middle_margin"
+                    android:layout_marginTop="@dimen/small_margin"
                     android:text="@string/companies_example" />
 
                 <TextView
+                    android:id="@+id/budget_title"
+                    style="@style/Header3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/l_big_margin"
-                    android:fontFamily="@font/lato_regular"
+                    android:layout_marginTop="@dimen/big_margin"
                     android:inputType="textMultiLine"
-                    android:text="Budget"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/middle_textSize" />
+                    android:text="@string/movie_details_budget_example"
+                    tools:ignore="TextViewEdits" />
 
                 <TextView
                     android:id="@+id/budget"
                     style="@style/CasualTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/middle_margin"
+                    android:layout_marginTop="@dimen/small_margin"
                     android:text="@string/budget_example" />
 
                 <TextView
+                    android:id="@+id/revenue_title"
+                    style="@style/Header3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/l_big_margin"
-                    android:fontFamily="@font/lato_regular"
+                    android:layout_marginTop="@dimen/big_margin"
                     android:inputType="textMultiLine"
-                    android:text="Revenue"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/middle_textSize" />
+                    android:text="@string/movie_details_revenue_example"
+                    tools:ignore="TextViewEdits" />
 
                 <TextView
                     android:id="@+id/revenue"
                     style="@style/CasualTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/middle_margin"
+                    android:layout_marginTop="@dimen/small_margin"
                     android:text="@string/budget_example" />
 
                 <TextView
+                    android:id="@+id/production_countries_title"
+                    style="@style/Header3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/l_big_margin"
-                    android:fontFamily="@font/lato_regular"
+                    android:layout_marginTop="@dimen/big_margin"
                     android:inputType="textMultiLine"
-                    android:text="Production Countries"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/middle_textSize" />
+                    android:text="@string/movie_details_production_countries_example"
+                    tools:ignore="TextViewEdits" />
 
                 <TextView
                     android:id="@+id/production_countries"
                     style="@style/CasualTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/middle_margin"
+                    android:layout_marginTop="@dimen/small_margin"
                     android:text="@string/production_countries_example" />
 
                 <TextView
+                    android:id="@+id/homepage_title"
+                    style="@style/Header3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/l_big_margin"
-                    android:fontFamily="@font/lato_regular"
+                    android:layout_marginTop="@dimen/big_margin"
                     android:inputType="textMultiLine"
-                    android:text="Home Page"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/middle_textSize" />
+                    android:text="@string/movie_details_home_page"
+                    tools:ignore="TextViewEdits" />
 
                 <TextView
                     android:id="@+id/homepage"
                     style="@style/CasualTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/middle_margin"
-                    android:layout_marginBottom="@dimen/l_big_margin"
+                    android:layout_marginTop="@dimen/small_margin"
                     android:text="@string/homepage_example" />
 
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/big_margin" />
 
             </LinearLayout>
 
             <Space
-                android:layout_width="15dp"
+                android:layout_width="@dimen/movie_details_horizontal_barrier"
                 android:layout_height="0dp" />
 
         </LinearLayout>
-
-
     </LinearLayout>
 </ScrollView>

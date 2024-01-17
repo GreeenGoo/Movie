@@ -9,14 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/action_bar_title"
-        android:layout_margin="@dimen/big_margin"
+        android:layout_margin="@dimen/middle_margin"
         android:fontFamily="@font/inter_regular"
-        android:textSize="30sp"
+        android:textSize="@dimen/big_textSize"
         android:textColor="@color/white"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
-        android:layout_marginTop="@dimen/big_margin"
+        android:layout_marginTop="@dimen/middle_margin"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

@@ -1,5 +1,6 @@
-package com.education.movie.presentation.viewmodel.mainscreen
+package com.education.movie.presentation.viewmodel.popularmovies
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -30,6 +31,7 @@ class PopularMoviesViewModel @Inject constructor(
             try {
                 pageOfMovies.value = repository.getPageOfMovies(page)
             } catch (e: Exception) {
+                Log.e("Error", "Error")
             }
         }
     }
@@ -39,6 +41,7 @@ class PopularMoviesViewModel @Inject constructor(
             try {
                movie.value = repository.getMovie(movieId)
             } catch (e: Exception){
+                Log.e("Error", "Error")
             }
         }
     }

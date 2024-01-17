@@ -15,9 +15,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.education.movie.R
 import com.education.movie.data.models.popularmovies.PageOfMoviesResponse
 import com.education.movie.databinding.FragmentPopularMoviesBinding
-import com.education.movie.presentation.viewmodel.mainscreen.PopularMoviesViewModel
+import com.education.movie.presentation.viewmodel.popularmovies.PopularMoviesViewModel
 import dagger.hilt.android.AndroidEntryPoint
-//import kotlinx.android.synthetic.main.fragment_popular_movies.recycler_view
 import kotlin.system.exitProcess
 
 @AndroidEntryPoint

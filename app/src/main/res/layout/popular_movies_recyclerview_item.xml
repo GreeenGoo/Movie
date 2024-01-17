@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_margin="@dimen/big_margin">
+    android:layout_margin="@dimen/middle_margin">
 <com.google.android.material.card.MaterialCardView
     android:layout_width="match_parent"
     android:layout_height="300dp"
@@ -22,12 +22,12 @@
 
     <TextView
         android:id="@+id/title"
-        android:layout_marginTop="@dimen/big_margin"
+        android:layout_marginTop="@dimen/middle_margin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
         android:text="@string/primary_poster_title"
-        android:textSize="@dimen/big_textSize"
+        android:textSize="@dimen/middle_textSize"
         android:textColor="@color/white"
         android:fontFamily="@font/lato_regular"
         tools:ignore="TextViewEdits" />

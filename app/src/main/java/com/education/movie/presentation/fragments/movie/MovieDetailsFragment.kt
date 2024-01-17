@@ -23,7 +23,7 @@ import com.education.movie.data.models.movie.ProductionCountriesResponse
 import com.education.movie.data.models.movie.SpokenLanguagesResponse
 import com.education.movie.databinding.FragmentMovieDetailsBinding
 import com.education.movie.presentation.fragments.popularmovies.PopularMoviesAdapter
-import com.education.movie.presentation.viewmodel.mainscreen.PopularMoviesViewModel
+import com.education.movie.presentation.viewmodel.popularmovies.PopularMoviesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -59,71 +59,55 @@ class MovieDetailsFragment : Fragment() {
                     binding.titleAndReleaseDate.text =
                         "${response.body()?.title} (${getYearFromDate(response.body()?.releaseDate.toString())})"
                     uploadPicture(binding.poster, response.body()!!.posterPath)
-//                    }
-                    if (response.body()!!.releaseDate.isEmpty()) {
-                        binding.releaseDate.visibility = View.GONE
-                    } else {
-                        binding.releaseDate.text = convertDataToRightFormat(
-                            response.body()!!.releaseDate
-                        )
-                    }
-                    if (response.body()!!.genres.isEmpty()) {
-//                        binding.movieGenres.visibility = View.GONE
-                    } else {
-                        addNewGenreTab(response.body()!!.genres)
-                    }
-                    if (response.body()!!.runtime == 0) {
-                        binding.runtime.visibility = View.GONE
-                    } else {
-                        binding.runtime.text =
-                            "${response.body()!!.runtime / 60}h ${response.body()!!.runtime % 60}m"
-                    }
-                    if (response.body()!!.voteAverage == 0f || response.body()!!.voteCount == 0) {
-                        binding.vote.visibility = View.GONE
-                    } else {
-                        binding.vote.text =
-                            "${response.body()!!.voteAverage} (${response.body()!!.voteCount} voices)"
-                    }
-                    if (response.body()!!.homepage.isEmpty()) {
-                        binding.homepage.visibility = View.GONE
-                    } else {
-                        binding.homepage.text = response.body()!!.homepage
-                    }
-                    if (response.body()!!.productionCountries.isEmpty()) {
-                        binding.productionCountries.visibility = View.GONE
-                    } else {
-                        binding.productionCountries.text = createCountriesLine(
-                            response.body()!!.productionCountries
-                        )
-                    }
-                    if (response.body()!!.spokenLanguages.isEmpty()) {
-//                        binding.spokenLanguage.visibility = View.GONE
-                    } else {
-                        addNewLanguageTab(response.body()!!.spokenLanguages)
-                    }
+                    binding.releaseDate.text = convertDataToRightFormat(
+                        response.body()!!.releaseDate
+                    )
+                    binding.runtime.text =
+                        "${response.body()!!.runtime / 60}h ${response.body()!!.runtime % 60}m"
+                    binding.vote.text =
+                        "${response.body()!!.voteAverage} (${response.body()!!.voteCount} voices)"
+                    addGenresTab(response.body()!!.genres)
+                    addNewLanguageTab(response.body()!!.spokenLanguages)
                     if (response.body()!!.overview.isEmpty()) {
-                        binding.overview.visibility = View.GONE
+                        binding.details.visibility = View.GONE
+                        binding.detailsTitle.visibility = View.GONE
                     } else {
-                        binding.overview.text = response.body()!!.overview
+                        binding.details.text = response.body()!!.overview
                     }
                     if (response.body()!!.productionCompanies.isEmpty()) {
-                        binding.companies.visibility = View.GONE
+                        binding.productionCompaniesTitle.visibility = View.GONE
+                        binding.productionCompanies.visibility = View.GONE
                     } else {
-                        binding.companies.text = createCompaniesLine(
+                        binding.productionCompanies.text = createCompaniesLine(
                             response.body()!!.productionCompanies
                         )
                     }
                     if (response.body()!!.budget == 0) {
+                        binding.budgetTitle.visibility = View.GONE
                         binding.budget.visibility = View.GONE
                     } else {
                         binding.budget.text = "${response.body()!!.budget}$"
                     }
                     if (response.body()!!.revenue == 0) {
+                        binding.revenueTitle.visibility = View.GONE
                         binding.revenue.visibility = View.GONE
                     } else {
                         binding.revenue.text = "${response.body()!!.revenue}$"
                     }
-
+                    if (response.body()!!.productionCountries.isEmpty()) {
+                        binding.productionCountries.visibility = View.GONE
+                        binding.productionCountriesTitle.visibility = View.GONE
+                    } else {
+                        binding.productionCountries.text = createCountriesLine(
+                            response.body()!!.productionCountries
+                        )
+                    }
+                    if (response.body()!!.homepage.isEmpty()) {
+                        binding.homepageTitle.visibility = View.GONE
+                        binding.homepage.visibility = View.GONE
+                    } else {
+                        binding.homepage.text = response.body()!!.homepage
+                    }
                 } catch (e: Exception) {
                     Log.e("Movie Mistake", "There is a mistake with downloading the movie.")
                 }
@@ -131,7 +115,7 @@ class MovieDetailsFragment : Fragment() {
         }
     }
 
-    private fun addNewGenreTab(genres: List<GenresResponse>) {
+    private fun addGenresTab(genres: List<GenresResponse>) {
         val flexboxLayout = binding.genresFlexboxLayout
         for (genre in genres) {
             val genreTextView = TextView(requireContext())
@@ -139,7 +123,7 @@ class MovieDetailsFragment : Fragment() {
             genreTextView.textSize = 15f
             genreTextView.background =
                 ContextCompat.getDrawable(requireContext(), R.drawable.button_shape)
-            genreTextView.setPadding(50, 25, 50, 25)
+            genreTextView.setPadding(50, 20, 50, 20)
             genreTextView.setTextColor(Color.WHITE)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 genreTextView.typeface = resources.getFont(R.font.lato_regular)
@@ -156,7 +140,7 @@ class MovieDetailsFragment : Fragment() {
             genreTextView.textSize = 15f
             genreTextView.background =
                 ContextCompat.getDrawable(requireContext(), R.drawable.button_shape)
-            genreTextView.setPadding(50, 25, 50, 25)
+            genreTextView.setPadding(50, 20, 50, 20)
             genreTextView.setTextColor(Color.WHITE)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 genreTextView.typeface = resources.getFont(R.font.lato_regular)
@@ -182,15 +166,6 @@ class MovieDetailsFragment : Fragment() {
     }
 
     private fun createCountriesLine(list: List<ProductionCountriesResponse>): String {
-        var line = ""
-        for (i in list.indices) {
-            line += if (i == 0) list[i].name
-            else ", ${list[i].name}"
-        }
-        return line
-    }
-
-    private fun createLanguagesLine(list: List<SpokenLanguagesResponse>): String {
         var line = ""
         for (i in list.indices) {
             line += if (i == 0) list[i].name
