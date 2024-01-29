@@ -103,6 +103,6 @@ class PopularMoviesFragment : Fragment() {
     }
 
     companion object {
-        private const val differenceNumber = 2
+        private const val differenceNumber = 3
     }
 }

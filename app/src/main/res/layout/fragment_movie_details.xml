@@ -296,6 +296,8 @@
                     style="@style/CasualTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:autoLink= "web"
+                    android:textColorLink="#4545FB"
                     android:layout_marginTop="@dimen/small_margin"
                     android:text="@string/homepage_example" />
 

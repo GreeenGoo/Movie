@@ -64,8 +64,10 @@ class MovieDetailsFragment : Fragment() {
                     )
                     binding.runtime.text =
                         "${response.body()!!.runtime / 60}h ${response.body()!!.runtime % 60}m"
+                    var voiceAverage = String.format("%.1f", response.body()!!.voteAverage)
+                    voiceAverage = voiceAverage.replace(",", ".")
                     binding.vote.text =
-                        "${response.body()!!.voteAverage} (${response.body()!!.voteCount} voices)"
+                        "$voiceAverage (${response.body()!!.voteCount} voices)"
                     addGenresTab(response.body()!!.genres)
                     addNewLanguageTab(response.body()!!.spokenLanguages)
                     if (response.body()!!.overview.isEmpty()) {
