@@ -1,14 +1,14 @@
 package com.education.movie.data.repository
 
-import com.education.movie.data.models.mainscreen.PageOfMoviesResponse
+import com.education.movie.data.models.popularmovies.PageOfMoviesResponse
 import com.education.movie.data.models.movie.MovieResponse
 import com.education.movie.data.network.RetrofitClient
 import retrofit2.Response
 
 class MoviesRepository(private val retrofitClient : RetrofitClient) {
-    suspend fun getPageOfMovies(): Response<PageOfMoviesResponse>? {
+    suspend fun getPageOfMovies(page: Int): Response<PageOfMoviesResponse>? {
         try {
-            return retrofitClient.api.getFirstPageOfPopularMovies()
+            return retrofitClient.api.getFirstPageOfPopularMovies(page)
         } catch (e: Exception) {
             e.printStackTrace()
         }
